@@ -8,18 +8,20 @@ export default class App extends Component {
     super(props)
     this.state = {
       selectOptions : [],
-      id: "",
-      name: ''
+      body: "",
+      title: '',
+      name:""
     }
   }
 
  async getOptions(){
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users')
+    const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
     const data = res.data
 
     const options = data.map(d => ({
-      "value" : d.id,
-      "label" : d.name
+      "value" : d.body,
+      "label" : d.title,
+      
 
     }))
 
@@ -28,18 +30,12 @@ export default class App extends Component {
   }
 
   handleChange(e){
-   this.setState({id:e.value, name:e.label})
+   this.setState({body:e.value, title:e.label})
   }
 
   componentDidMount(){
       this.getOptions()
-      //   fetch('https://jsonplaceholder.typicode.com/posts/1')
-      //   .then(res => res.json())
-      //   .then((data) => {
-      //     this.setState({ contacts: data })
-      //   })
-      //   .catch(console.log)
-      // }
+      
   
   }
   render() {
@@ -47,7 +43,7 @@ export default class App extends Component {
     return (
       <div>
         <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
-    <p className="anne">You have selected <strong>{this.state.name}</strong> whose id is <strong>{this.state.id}</strong></p>
+    <p className="anne">You have selected <strong>{this.state.title}</strong> whose body is <strong>{this.state.body}</strong></p>
       </div >
     )
   }
