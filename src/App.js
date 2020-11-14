@@ -30,7 +30,7 @@ export default class App extends Component {
   }
 
   handleChange(e){
-   this.setState({body:e.value, title:e.label})
+   this.setState({body:e.value, title:e.label, name:e.name})
   }
 
   componentDidMount(){
@@ -41,9 +41,9 @@ export default class App extends Component {
   render() {
     console.log(this.state.selectOptions)
     return (
-      <div>
+      <div className="anne">
         <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
-    <p className="anne">You have selected <strong>{this.state.title}</strong> whose body is <strong>{this.state.body}</strong></p>
+    <p className="ann">You have selected <strong>{this.state.title}</strong> whose body is <strong>{this.state.body}</strong></p>
       </div >
     )
   }
